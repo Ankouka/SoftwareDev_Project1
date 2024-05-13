@@ -1,4 +1,4 @@
-This is the first software project I worked on with my team in our Software Devlopment project.
+This is the first software project I worked on with my team in our Software Devlopment class.
 Here is the decription of this software project:
 
 **Windoors** is a small company that builds windows and doors that can be ordered by pre-registered resellers. The company wants to simplify the process by which resellers enter new purchase orders. Your team has been hired to implement a web app that meets the requirements described in this document.
