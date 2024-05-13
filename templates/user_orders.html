@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<table>
+    <tr>
+        <th> Order ID </th>
+        <th> Date Created </th>
+        <th> Status </th>
+    </tr>
+    {% for order in orders %}
+        <tr> 
+            <td><a href={{ url_for('view_order',order_id=order.id) }}> {{order.id}} </a></td>
+            <td class="text"> {{ order.order_date }}</td>
+            <td class="text"> {{ order.status }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<button type="button" class="button" onclick=simple_action("{{ url_for('index') }}")>Sign Out</button>
+<button type="button" class="button" onclick=simple_action("{{ url_for('create_order') }}")>New Order</button>
+<script type="text/javascript">
+    function simple_action(target) {
+        window.location = target
+    }
+
+    function confirmed_action(target) {
+            if (confirm('Are you sure?')) {
+                window.location = target
+            }
+        }
+</script>
+{% endblock %}

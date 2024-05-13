@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block main %}
+        <form action="" method="POST" novalidate enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p>{{ form.sku.label }} <br> {{ form.sku(size=10) }}</p>
+            <p>{{form.product_name.label}} <br> {{form.product_name(size=20)}}</p>
+            <p>{{form.price.label}} <br> {{form.price(size=5)}}</p>
+            <label for="product_image">Choose the following images:</label>
+            <select name="product_image" id="product_image">
+                <option value="Door_D.jpg" selected>Door_D</option>
+                <option value="Door_E.jpg">Door E</option>
+                <option value="DoorA.png">Door A</option>
+                <option value="DoorB_1.png">Door B-1</option>
+                <option value="DoorB_2.png">Door B-2</option>
+                <option value="DoorB.png">Door B-3</option>
+                <option value="WindowA.jpg">Window A</option>
+                <option value="WindowB.jpg">Window B</option>
+                <option value="WindowC.jpg">Window C</option>
+                <option value="WindowD.jpg">Window D</option>
+                <option value="WindowE.jpg">Window E</option>
+            </select>
+            <p>{{form.stock.label}} <br> {{form.stock}}</p>
+            <p>{{form.specs.label}} <br> {{form.specs}}</p>
+            <p>{{ form.submit() }}</p>
+        </form>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+{% endblock %}

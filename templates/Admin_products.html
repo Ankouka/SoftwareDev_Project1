@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block main %}
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Image</th>
+            <th>Specs</th>
+            <th>Stock</th>
+        </tr>
+        {% for item in products %}
+            <tr>
+                <td class="wrap-text"> {{ item.product_name }}</td>
+                <td><img src="/static/images/{{item.product_image}}"  width="130px" width="130px"/></td>
+                <td class="wrap-text"> {{ item.specs }} </td>
+                <td><input type="text" readonly value="{{ item.stock }}"></td>
+                
+            </tr>
+        {% endfor %}
+    </table>
+    <p />
+    <button type="button" class="button" onclick=simple_action("{{ url_for('admin_all_orders') }}")>Back to Orders</button>
+    <button type="button" class="button" onclick=simple_action("{{ url_for('change_item') }}")>Change an item</button>
+    <script type="text/javascript">
+    function simple_action(target) {
+        window.location = target
+    }
+
+    function confirmed_action(target) {
+            if (confirm('Are you sure?')) {
+                window.location = target
+            }
+        }
+    </script>
+{% endblock %}

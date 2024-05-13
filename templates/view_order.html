@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block main %}
+    <p>Order {{ order.id }}</p>
+        <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Image</th>
+            <th>Specs</th>
+            <th>Price ($)</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+        </tr>
+        {% for item in items %}
+            <tr>
+                <td class="wrap-text"> {{ item.product_name }}</td>
+                <td><img src="/static/images/{{item.product_image}}" alt="{{ item.name }}" width="160px" height="160px" /></td>
+                <td class="wrap-text"> {{ item.specs }} </td>
+                <td class="wrap-text"> {{ item.price }} </td>
+                <td class="text">{{ quantities[loop.index0] }}</td>
+                <td class="wrap-text"> {{ total[loop.index0] }} </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% if user_id == "tmota" %}
+        <button type="button" class="button" onclick=simple_action("{{ url_for('change_status', order_id=order.id) }}")>Change Status</button>
+    {% endif %}
+    <p />
+    <button type="button" class="button" onclick=simple_action("{{ url_for('order_return') }}")>Back to Orders</button>
+    <script type="text/javascript">
+        function simple_action(target) {
+            window.location = target
+        }
+    
+        function confirmed_action(target) {
+                if (confirm('Are you sure?')) {
+                    window.location = target
+                }
+            }
+    </script>
+{% endblock %}

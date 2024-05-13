@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block main %}
+<form method="POST" action="{{ url_for('update_status', order_id=order.id)}}">
+    <p> Change Status </p>
+    <select name="change_status">
+        <option value="Ordered" selected>Ordered</option>
+        <option value="Preparing">Preparing</option>
+        <option value="In Transit">In Transit</option>
+        <option value="Delivered">Delivered</option>
+    </select>
+    <button type="submit" class="button">Update Status</button>
+</form>
+
+<script type="text/javascript">
+    function simple_action(target) {
+        window.location = target
+    }
+
+    function confirmed_action(target) {
+            if (confirm('Are you sure?')) {
+                window.location = target
+            }
+        }
+</script>
+{% endblock %}

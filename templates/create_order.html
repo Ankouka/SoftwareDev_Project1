@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block main %}
+    <p>Select the items for the order</p>
+<form method="POST">
+    <label for="id">Enter an order ID:</label>
+    <input type="text" id="id" name="id">
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Image</th>
+            <th>Specs</th>
+            <th>Stock</th>
+            <th>Quantity</th>
+        </tr>
+        {% for item in products %}
+            <tr>
+                <td class="wrap-text"> {{ item.product_name }}</td>
+                <td><img src="/static/images/{{item.product_image}}"  width="130px" width="130px"/></td>
+                <td class="wrap-text"> {{ item.specs }} </td>
+                <td class="wrap-text"> {{ item.stock }} </td>
+                <td><input type="number" id="{{ item.sku }}" name="{{ item.sku }}"></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p />
+    <button type="submit">Submit</button>
+</form>
+<script type="text/javascript">
+    function simple_action(target) {
+        window.location = target
+    }
+
+    function confirmed_action(target) {
+            if (confirm('Are you sure?')) {
+                window.location = target
+            }
+        }
+</script>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+{% endblock %}
